@@ -7,6 +7,7 @@ import api.product.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -31,17 +32,27 @@ public class ProductService {
 
 
     }
-/**
+
     public List<ProductDto> getAllProduct(){
         List<Product> productList = productRepository.findAll();
 
-        List<ProductDto> responseProductList
+        List<ProductDto> responseProductList = new ArrayList<>();
+
         if(!productList.isEmpty()){
             for(int i = 0; i<productList.size(); i++){
+                Product product = productList.get(i);
 
+                ProductDto productDto = new ProductDto(
+                        product.getName(),
+                        product.getDescription(),
+                        product.getPrice(),
+                        product.getCategory().toString()
+                );
+                responseProductList.add(productDto);
             }
+            return responseProductList;
         }
         return null;
     }
- */
+
 }

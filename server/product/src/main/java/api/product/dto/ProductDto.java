@@ -11,10 +11,10 @@ public class ProductDto {
 
     }
 
-    public ProductDto(String name, Double price, String description, String category) {
+    public ProductDto(String name, String description, Double price, String category) {
         this.name = name;
-        this.price = price;
         this.description = description;
+        this.price = price;
         this.category = category;
     }
 

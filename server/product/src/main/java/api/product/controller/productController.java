@@ -7,10 +7,9 @@ import api.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/product")
@@ -29,6 +28,18 @@ public class productController {
         return  new ResponseEntity<>("El producto se guardo correctamente", HttpStatus.OK);
     }
 
-    
+    @GetMapping("/getAll")
+    public ResponseEntity<List<ProductDto>> getAllProductController(){
+
+        List<ProductDto> responseProductList = productService.getAllProduct();
+
+        if(!responseProductList.isEmpty()){
+            return new ResponseEntity<>(responseProductList, HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(null,HttpStatus.NO_CONTENT);
+    }
+
+
 
 }

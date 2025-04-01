@@ -33,7 +33,7 @@ public class productController {
 
         List<ProductDto> responseProductList = productService.getAllProduct();
 
-        if(!responseProductList.isEmpty()){
+        if(responseProductList != null){
             return new ResponseEntity<>(responseProductList, HttpStatus.OK);
         }
 

@@ -16,6 +16,12 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
+    public void deleteProduct(){
+        productRepository.deleteAll();
+    }
+
+    public void savePrivateMethod(Product product){ productRepository.save(product);}
+
     public Product saveProduct(ProductDto productRequest){
         if(productRepository.findProductByName(productRequest.getName()).isEmpty()){
 

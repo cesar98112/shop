@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -21,6 +22,30 @@ public class ProductService {
     }
 
     public void savePrivateMethod(Product product){ productRepository.save(product);}
+
+    public boolean addProductQuantity(String name, int quantity){
+        Product product;
+
+        try{
+             product = productRepository.findProductByName(name).orElseThrow(()-> new RuntimeException("el producto no existe"));
+
+        }catch (Exception e){
+            return false;
+        }
+
+        productRepository.save(new Product(
+                product.getProductId(),
+                product.getName(),
+                product.getDescription(),
+                product.getPrice(),
+                product.getCategory(),
+                product.getQuantity()+quantity
+        ));
+        return true;
+
+
+
+    }
 
     public Product saveProduct(ProductDto productRequest){
         if(productRepository.findProductByName(productRequest.getName()).isEmpty()){

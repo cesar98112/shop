@@ -40,6 +40,18 @@ public class productController {
         return new ResponseEntity<>(null,HttpStatus.NO_CONTENT);
     }
 
+    @PutMapping("/{nombre}/{quantity}")
+    public ResponseEntity<String> updateQuantityController(@PathVariable(name="nombre") String name,
+                                                           @PathVariable(name="quantity") int quantity){
+
+        if(productService.addProductQuantity(name,quantity)){
+            return new ResponseEntity<>("El stock se ha actualizado con exito",HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>("El producto no existe",HttpStatus.NOT_FOUND);
+        }
+
+    }
+
 
 
 }

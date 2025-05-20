@@ -16,6 +16,24 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
+    public Product productUpdate(ProductRequest productRequest , String productName){
+        try{
+            Product product = productRepository.findByName(productName)
+                    .orElseThrow(()-> new RuntimeException("no existe el producto"));
+
+            product.setName(productRequest.getName());
+            product.setDescription(productRequest.getDescription());
+            product.setPrice(productRequest.getPrice());
+
+            return productRepository.save(product);
+
+
+        }catch (Exception error){
+            return null;
+        }
+
+    }
+
     public Product saveProduct( ProductRequest productRequest){
 
         try{

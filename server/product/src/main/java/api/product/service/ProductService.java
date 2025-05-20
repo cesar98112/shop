@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -28,6 +29,25 @@ public class ProductService {
         }catch (Exception e){
             return null;
         }
+
+    }
+
+    public boolean addStockProduct(String name, int quantity){
+        try{
+            Product product = productRepository.findByName(name)
+                    .orElseThrow(() -> new RuntimeException("producto no encontrado"));
+
+            product.setQuantity(product.getQuantity()+quantity);
+
+            productRepository.save(product);
+
+            return true;
+        }catch (Exception err){
+            return false;
+        }
+
+
+
 
     }
     public List<ProductRequest> getAllproduct(){

@@ -31,7 +31,20 @@ public class ProductController {
 
     }
 
-    @GetMapping("getAll")
+
+    @PutMapping("/addStock/{name}/{quantity}")
+    public ResponseEntity<String> addStockController(
+            @PathVariable(value = "name") String productName,
+            @PathVariable(value = "quantity") int quantity){
+        if(productService.addStockProduct(productName,quantity)){
+            return new ResponseEntity<>("stock actualizado con exito",HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>("Erro al actualizar el stock",HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+    @GetMapping("/getAll")
     public ResponseEntity<Object> getAllProductController(){
         List<ProductRequest> productList = productService.getAllproduct();
 

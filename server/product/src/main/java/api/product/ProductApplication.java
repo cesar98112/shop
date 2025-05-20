@@ -9,6 +9,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.List;
+
 @SpringBootApplication
 public class ProductApplication implements CommandLineRunner{
 
@@ -26,6 +28,11 @@ public class ProductApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 
+		List<ProductRequest> listProduct = productService.getAllproduct();
+
+		if(!listProduct.isEmpty()){
+			productService.deleteAllProduct();
+		}
 
 		ProductRequest product1 = new ProductRequest("iPhone 14 Pro","Smartphone de alta gama con cámara triple y pantalla OLED de 6.1 pulgadas.",1199.99,"MOBILES");
 		ProductRequest product2 = new ProductRequest("Samsung Galaxy S22","Teléfono Android con potente procesador y pantalla AMOLED.",999.99,"MOBILES");

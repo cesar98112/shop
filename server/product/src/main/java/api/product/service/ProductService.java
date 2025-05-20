@@ -7,6 +7,9 @@ import api.product.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class ProductService {
     @Autowired
@@ -27,7 +30,28 @@ public class ProductService {
         }
 
     }
-    
+    public List<ProductRequest> getAllproduct(){
+
+        try{
+            List<Product> productsList = productRepository.findAll();
+            List<ProductRequest> productResponseList = new ArrayList<>();
+
+            for(Product product : productsList){
+                productResponseList.add(new ProductRequest(
+                        product.getName(),
+                        product.getDescription(),
+                        product.getPrice(),
+                        product.getCategories().toString()
+                ));
+            }
+
+            return productResponseList;
+        }catch (Exception error){
+            return null;
+        }
+
+    }
+
     public void deleteAllProduct(){
        productRepository.deleteAll();
     }

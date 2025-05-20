@@ -12,6 +12,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class ProductApplication implements CommandLineRunner{
 
+
+
 	@Autowired
 	private ProductService productService;
 

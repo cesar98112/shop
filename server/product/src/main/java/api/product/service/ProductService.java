@@ -13,12 +13,22 @@ public class ProductService {
     private ProductRepository productRepository;
 
     public Product saveProduct( ProductRequest productRequest){
-        Product product = new Product(productRequest.getName()
-                ,productRequest.getDescription(),
-                productRequest.getPrice(),
-                1,
-                Categories.valueOf(productRequest.getCategories()));
 
-        return productRepository.save(product);
+        try{
+            Product product = new Product(productRequest.getName()
+                    ,productRequest.getDescription(),
+                    productRequest.getPrice(),
+                    1,
+                    Categories.valueOf(productRequest.getCategories()));
+
+            return productRepository.save(product);
+        }catch (Exception e){
+            return null;
+        }
+
+    }
+    
+    public void deleteAllProduct(){
+       productRepository.deleteAll();
     }
 }

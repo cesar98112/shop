@@ -1,9 +1,12 @@
 package api.product.service;
 
+import api.product.controller.ProductController;
 import api.product.dto.ProductRequest;
 import api.product.model.Categories;
 import api.product.model.Product;
 import api.product.repository.ProductRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +19,8 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
+    private static final Logger logger = LoggerFactory.getLogger(ProductService.class);
+
     public Product productUpdate(ProductRequest productRequest , String productName){
         try{
             Product product = productRepository.findByName(productName)
@@ -24,7 +29,7 @@ public class ProductService {
             product.setName(productRequest.getName());
             product.setDescription(productRequest.getDescription());
             product.setPrice(productRequest.getPrice());
-
+            product.setCategories(Categories.valueOf(productRequest.getCategories()));
             return productRepository.save(product);
 
 
@@ -61,6 +66,7 @@ public class ProductService {
 
             return true;
         }catch (Exception err){
+
             return false;
         }
 

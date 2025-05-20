@@ -4,6 +4,8 @@ package api.product.controller;
 import api.product.dto.ProductRequest;
 import api.product.model.Product;
 import api.product.service.ProductService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,12 +13,15 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @RestController
 @RequestMapping("/api/product")
 public class ProductController {
 
     @Autowired
     private ProductService productService;
+
+    private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 
     @PostMapping("/save")
     public ResponseEntity<Object> saveProductController (@RequestBody ProductRequest productRequest){
@@ -32,15 +37,17 @@ public class ProductController {
     }
 
     @PutMapping("/update/{name}")
-    public ResponseEntity<String> updateProductController(@PathVariable(value = "name") String productName, ProductRequest productRequest){
+    public ResponseEntity<String> updateProductController(@PathVariable(value = "name") String productName,@RequestBody ProductRequest productRequest){
         Product product = productService.productUpdate(productRequest,productName);
+
+
         if(product != null){
             return new ResponseEntity<>("producto actualizado con exito", HttpStatus.OK);
         }else{
             return new ResponseEntity<>("Error al actualizar el producto", HttpStatus.NOT_FOUND);
         }
     }
-    
+
     @PutMapping("/addStock/{name}/{quantity}")
     public ResponseEntity<String> addStockController(
             @PathVariable(value = "name") String productName,

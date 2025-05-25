@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -22,14 +23,15 @@ public class SecurityConfig {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    @Autowired
+    private JwtBuilder jwtBuilder;
+
+
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http)throws Exception{
         return http.csrf(AbstractHttpConfigurer::disable).authorizeHttpRequests(a ->
-                a.anyRequest().authenticated()).
-                httpBasic().
-                and().
-                build();
+                a.anyRequest().authenticated()).addFilterBefore(new JwtValidate(jwtBuilder), BasicAuthenticationFilter.class ).build();
     }
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception{

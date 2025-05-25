@@ -26,12 +26,12 @@ public class SecurityConfig {
     @Autowired
     private JwtBuilder jwtBuilder;
 
-
-
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http)throws Exception{
         return http.csrf(AbstractHttpConfigurer::disable).authorizeHttpRequests(a ->
-                a.anyRequest().authenticated()).addFilterBefore(new JwtValidate(jwtBuilder), BasicAuthenticationFilter.class ).build();
+                a.requestMatchers("/api/auth/**").permitAll()
+                        .anyRequest().authenticated()
+                        ).addFilterBefore(new JwtValidate(jwtBuilder), BasicAuthenticationFilter.class ).build();
     }
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception{

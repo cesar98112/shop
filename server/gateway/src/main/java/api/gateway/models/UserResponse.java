@@ -1,4 +1,4 @@
-package api.authentication.model;
+package api.gateway.models;
 
 public class UserResponse {
     private String userName;

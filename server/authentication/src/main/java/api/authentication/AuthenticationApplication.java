@@ -39,3 +39,4 @@ public class AuthenticationApplication implements CommandLineRunner {
 		userRepository.save(user1);
 	}
 }
+

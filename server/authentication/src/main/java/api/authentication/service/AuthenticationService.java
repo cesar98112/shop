@@ -4,11 +4,14 @@ import api.authentication.controller.AuthenticationController;
 import api.authentication.model.*;
 import api.authentication.repository.UserRepository;
 import api.authentication.security.JwtBuilder;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,6 +20,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.Set;
 
 @Service
@@ -36,6 +40,18 @@ public class AuthenticationService {
 
     private static final Logger logger = LoggerFactory.getLogger(AuthenticationService.class);
 
+    public UserResponse validateToken(String token){
+        DecodedJWT decodedJWT = jwtBuilder.validateToken(token);
+
+        String username = jwtBuilder.extractUsername(decodedJWT);
+        String stringAuthorities = jwtBuilder.expesificClaim(decodedJWT,"authorities").asString();
+        Collection<? extends GrantedAuthority> authorities = AuthorityUtils.commaSeparatedStringToAuthorityList(stringAuthorities);
+        UserResponse userResponse = new UserResponse();
+        userResponse.setUserName(username);
+        userResponse.setRoles(stringAuthorities);
+
+        return userResponse;
+    }
 
     public UserResponse login(UserLogin userLogin){
         UserDetails user = userDetailsService.loadUserByUsername(userLogin.getUsername());

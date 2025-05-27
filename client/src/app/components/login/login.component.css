@@ -1,0 +1,104 @@
+.loginContainer{
+    background-image: url("/assets/wallpaper.png");
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.backgroundFilter{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+.titleLogin{
+    
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+    background-image: url("/assets/fondo.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 10px 0px 0px 10px;
+    color: white;
+    
+}
+.titleLogin p{
+    margin: 10px;
+    text-align: center;
+}
+.titleLogin h2{
+    font-family: "Montserrat", sans-serif;
+    text-align: center;
+    margin: 0px;
+    
+    color:white;
+    font-size: 50px;
+}
+.titleLogin img{
+    width: 200px;
+    
+}
+
+.containerForm{
+    display: flex;
+    flex-direction: row;
+    width: 75%;
+    height: 60%;
+  
+    border-radius: 10px;
+    box-shadow: 8px 9px 69px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 8px 9px 69px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 8px 9px 69px 0px rgba(0,0,0,0.75);
+    
+}
+.formulario{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(54, 53, 53);
+    border-radius: 0 10px 10px 0px;
+}
+.formulario h1{
+    text-align: start;
+    width: 40%;
+    color: white;
+}
+
+.inputLogin{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+.inputLogin label{
+    font-weight: bolder;
+    color: white;
+    margin-top: 30px;
+    margin-bottom: 5px;
+}
+.buttonLogin{
+    margin-top: 40px;
+    padding: 10px;
+    background-color: rgb(26, 26, 97);
+    font-weight: bolder;
+    font-size: 15px;
+    width: 30%;
+    border: none;
+    border-radius: 5px;
+    color: white;
+
+}
+.inputLogin input{
+    background-color: rgba(240, 248, 255, 0);
+    border-top:none ;
+    border-left:none ;
+    border-right:none ;
+    padding: 10px;
+    border-bottom: 1px solid black;
+}

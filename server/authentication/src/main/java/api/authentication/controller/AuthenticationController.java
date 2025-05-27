@@ -1,5 +1,6 @@
 package api.authentication.controller;
 
+import api.authentication.model.UserLogin;
 import api.authentication.model.UserRequest;
 import api.authentication.model.UserResponse;
 import api.authentication.service.AuthenticationService;
@@ -33,5 +34,18 @@ public class AuthenticationController {
 
 
 
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<Object> loginUser(@RequestBody UserLogin userLogin){
+        try{
+            UserResponse userResponse = authenticationService.login(userLogin);
+            if(userResponse == null){
+                return new ResponseEntity<>("contraseña invalida",HttpStatus.UNAUTHORIZED);
+            }
+            return new ResponseEntity<>(userResponse,HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>("credenciales invalidas",HttpStatus.UNAUTHORIZED);
+        }
     }
 }

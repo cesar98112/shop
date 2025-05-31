@@ -17,6 +17,12 @@
 .logo{
     width: 15%;
 }
+.fullName{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
 .titleLogin{
     
     display: flex;
@@ -24,10 +30,11 @@
     align-items: center;
     flex-direction: column;
     width: 50%;
-    background-image: url("/assets/fondo.png");
+    background-image: url("/assets/register.png");
     background-repeat: no-repeat;
     background-size: cover;
-    
+    background-position: center center;
+    background-size: 100% 100%;
     border-radius: 10px 0px 0px 10px;
     text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
     color: white;
@@ -36,7 +43,6 @@
 .titleLogin p{
     margin: 10px;
     text-align: center;
-    
 }
 .titleLogin h2{
     font-family: "Montserrat", sans-serif;
@@ -60,25 +66,38 @@
     -moz-box-shadow: 8px 9px 69px 0px rgba(0,0,0,0.75);
     
 }
+
 .formulario{
+    
     width: 50%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content:center;
+    align-items: flex-start;
     background-color: rgb(54, 53, 53);
     border-radius: 0 10px 10px 0px;
 }
+
 .formulario h1{
-    text-align: start;
-    width: 40%;
+    padding-top: 20px;
+    text-align: center;
+    width: 100%;
+    margin: 0px;
     color: white;
 }
 
 .inputLogin{
+    margin-left: 40px;
     display: flex;
     flex-direction: column;
     width: 40%;
+}
+.buttonContainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .inputLogin label{
@@ -99,6 +118,10 @@
     color: white;
     cursor: pointer;
 
+}
+.passwordInput{
+    display: flex;
+    flex-direction: row;
 }
 .buttonLogin:hover{
     background-color:rgb(41, 41, 151) ;

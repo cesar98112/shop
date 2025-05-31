@@ -1,6 +1,5 @@
 package api.authentication.service;
 
-import api.authentication.controller.AuthenticationController;
 import api.authentication.model.*;
 import api.authentication.repository.UserRepository;
 import api.authentication.security.JwtBuilder;
@@ -16,7 +15,6 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

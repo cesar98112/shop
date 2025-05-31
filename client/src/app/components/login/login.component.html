@@ -19,15 +19,15 @@ Nuestro equipo selecciona cuidadosamente cada producto para garantizar calidad, 
                     <h1>Login</h1>
                     <div class="inputLogin">
                         <label for="username">Username</label>
-                        <input type="text" id="username" placeholder="username">
+                        <input type="text" id="username" [(ngModel)]="username"  name="username" placeholder="username">
                     </div>
                     <div class="inputLogin">
                         <label for="password">Password</label>
-                        <input type="password" id="password" placeholder="password">
+                        <input type="password" id="password" [(ngModel)]="password" name="password" placeholder="password">
                     </div>
 
-                    <button class="buttonLogin">Login</button>
-                    <p>¿Todavia no tienes cuenta? <a href="">Registrate</a></p>
+                    <button (click)="addUser()" class="buttonLogin">Login</button>
+                    <p>¿Todavia no tienes cuenta? <a href="/register">Registrate</a></p>
                 </form>
         </div>
     </div>

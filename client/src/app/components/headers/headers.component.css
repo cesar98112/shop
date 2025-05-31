@@ -1,0 +1,47 @@
+.headerContainer{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(32, 32, 51);
+}
+.navBar{
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    
+}
+.navBar a{
+    text-decoration: none;
+    align-content: center;
+    text-align: center;
+    color: white;
+    height: 100%;
+    width: 25%;
+
+}
+.navBar a:hover{
+    
+    text-decoration: none;
+    color: white;
+    background-color: rgb(58, 58, 90);
+    
+}
+.titleContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 40%;
+}
+.titleContainer img{
+    width: 24%;
+}
+.titleContainer h2{
+    color: white;
+}
